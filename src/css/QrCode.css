@@ -97,9 +97,9 @@ input[type="text"] {
 
 .generate-btn:disabled,
 .download-btn:disabled {
-    background: linear-gradient(27deg, rgb(131, 131, 131), rgb(131, 131, 131));
+    /* background: linear-gradient(27deg, rgb(131, 131, 131), rgb(131, 131, 131)); */
     cursor: no-drop;
-    color: #4e4c4c;
+    /* color: #4e4c4c; */
 }
 
 
@@ -113,6 +113,14 @@ input[type="text"] {
 .footer a {
     text-decoration: none;
     color: #555;
+}
+
+.loading {
+    padding: 10px 20px;
+    margin: 20px 0px 40px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
 }
 
 @media screen and (max-width:1000px) {

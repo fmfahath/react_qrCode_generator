@@ -2,16 +2,20 @@ import React, { useState } from 'react'
 import sampleQrImage from './assets/qr_code.svg'
 
 const QrCode = () => {
-    const [qrImage, setImage] = useState(sampleQrImage);
+    const [qrImage, setQrImage] = useState('');
     const [inputData, setInputData] = useState('');
     const [inputSize, setInputSize] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const generateQR = async () => {
+        setLoading(true);
         try {
             const urlImg = `https://api.qrserver.com/v1/create-qr-code/?size=${inputSize}x${inputSize}&data=${encodeURIComponent(inputData)}`;
-            setImage(urlImg);
+            setQrImage(urlImg);
         } catch (error) {
             console.log("generating QR error: ", error)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -19,7 +23,8 @@ const QrCode = () => {
         <div className="app-container">
             <div className="card">
                 <h1>QR Code Generator</h1>
-                <div className='qr-code-image'>
+                {loading && <p className='loading'>Please Wait... </p>}
+                <div className='qr-code-image' style={{ display: qrImage ? 'block' : 'none' }}>
                     <img src={qrImage} alt="qr-code-image" />
                 </div>
                 <div className='form'>
@@ -32,7 +37,7 @@ const QrCode = () => {
                         <input type="text" id='sizeInput' placeholder='Enter image size' onChange={(e) => setInputSize(e.target.value)} />
                     </div>
                     <div className='form-btn'>
-                        <button className='generate-btn' disabled={false} onClick={generateQR}>Generate QR</button>
+                        <button className='generate-btn' disabled={loading} onClick={generateQR}>{loading ? 'Generating...' : 'Generate QR'}</button>
                         <button className='download-btn' >Download</button>
                     </div>
                     <div className='footer'>
