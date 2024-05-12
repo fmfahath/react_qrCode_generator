@@ -6,8 +6,13 @@ const QrCode = () => {
     const [inputData, setInputData] = useState('');
     const [inputSize, setInputSize] = useState('');
 
-    const generateQR = () => {
-
+    const generateQR = async () => {
+        try {
+            const urlImg = `https://api.qrserver.com/v1/create-qr-code/?size=${inputSize}x${inputSize}&data=${encodeURIComponent(inputData)}`;
+            setImage(urlImg);
+        } catch (error) {
+            console.log("generating QR error: ", error)
+        }
     }
 
     return (
