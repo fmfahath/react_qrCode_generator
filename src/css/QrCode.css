@@ -41,6 +41,7 @@
 .form-element {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 
 .input-label {
@@ -94,6 +95,13 @@ input[type="text"] {
 }
 
 
+.generate-btn:disabled,
+.download-btn:disabled {
+    background: linear-gradient(27deg, rgb(131, 131, 131), rgb(131, 131, 131));
+    cursor: no-drop;
+    color: #4e4c4c;
+}
+
 
 .footer {
     text-align: center;
@@ -105,4 +113,25 @@ input[type="text"] {
 .footer a {
     text-decoration: none;
     color: #555;
+}
+
+@media screen and (max-width:1000px) {
+    .card {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .card {
+        width: 80%;
+    }
+
+    .form-btn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-btn button {
+        margin-bottom: 10px;
+    }
 }
