@@ -19,6 +19,21 @@ const QrCode = () => {
         }
     }
 
+    const downloadQR = () => {
+        fetch(qrImage)
+            .then((response) => response.blob())
+            .then((blob) => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = "qrcode.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }).catch((error) => {
+                console.log('Error in downloading QR image : ', error);
+            });
+    }
+
     return (
         <div className="app-container">
             <div className="card">
@@ -38,7 +53,7 @@ const QrCode = () => {
                     </div>
                     <div className='form-btn'>
                         <button className='generate-btn' disabled={loading} onClick={generateQR}>{loading ? 'Generating...' : 'Generate QR'}</button>
-                        <button className='download-btn' >Download</button>
+                        <button className='download-btn' onClick={downloadQR}>Download</button>
                     </div>
                     <div className='footer'>
                         <p>Designed By: <a href="#">FM. Fahath</a></p>
